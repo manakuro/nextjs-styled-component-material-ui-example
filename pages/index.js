@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -32,8 +33,11 @@ const rows = [
 
 const Home = () => {
   const classes = useStyles();
+  const theme = useTheme();
+
   return (
     <Container>
+      <div style={{ margin: theme.spacing() }}>{`spacing ${theme.spacing()}`}</div>
       <Paper className={classes.root}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -69,7 +73,7 @@ const Container = styled.div`
   height: 100vh;
   margin: 2rem auto;
   padding: 2rem;
-  background: #f2f2f2;
+  background: ${props => props.theme.primary};
 `
 
 export default Home

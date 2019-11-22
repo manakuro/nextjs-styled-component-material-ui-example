@@ -1,9 +1,11 @@
 import NextApp from 'next/app'
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import { ThemeProvider as MaterialThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = {
-  primary: 'green',
+  primary: '#f2f2f2'
+  ...createMuiTheme()
 }
 
 export default class App extends NextApp {
@@ -17,9 +19,11 @@ export default class App extends NextApp {
     const { Component, pageProps } = this.props
 
     return (
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <StyledThemeProvider theme={theme}>
+        <MaterialThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </MaterialThemeProvider>
+      </StyledThemeProvider>
     )
   }
 }
